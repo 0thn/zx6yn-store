@@ -1,27 +1,30 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 function SuccessContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [authorized, setAuthorized] = useState(false);
 
-useEffect(() => {
-    // Redirection se ID mil rahi hai toh theek, 
-    // nahi toh manually check kar lo ki kya humne pehle verify kiya tha
-    const paymentId = searchParams.get('razorpay_payment_id');
+  useEffect(() => {
+    // Sabse simple aur bulletproof tarika - URL mein kuch bhi kachra ho, ye dhund lega
+    const currentUrl = window.location.href;
     
-    if (paymentId) {
+    // Agar URL mein payment ID ya hamara secret password hai, toh access de do
+    const isPaid = currentUrl.includes('razorpay_payment_id') || currentUrl.includes('zx6yn_premium');
+    const isAlreadyVIP = localStorage.getItem('zx6yn_vip') === 'true';
+
+    if (isPaid) {
       localStorage.setItem('zx6yn_vip', 'true');
       setAuthorized(true);
-    } else if (localStorage.getItem('zx6yn_vip') === 'true') {
+    } else if (isAlreadyVIP) {
       setAuthorized(true);
     } else {
+      // Agar kuch nahi mila tabhi bahar phekna hai
       router.push('/');
     }
-  }, [searchParams, router]);
+  }, [router]);
 
   if (!authorized) {
     return (
@@ -34,7 +37,7 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white p-6 font-sans relative">
       
-      {/* NAYA TOP BAR (Taaki user wapas home ja sake aur VIP button dekh sake) */}
+      {/* NAYA TOP BAR */}
       <div className="absolute top-6 left-6">
         <a href="/" className="text-gray-400 hover:text-white transition-colors text-sm font-bold flex items-center">
           <i className="fa-solid fa-arrow-left mr-2"></i> Back to Home

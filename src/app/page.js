@@ -51,116 +51,114 @@ export default function Home() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <main className="relative z-10 pt-20">
+      <main className="relative z-10 pt-24 md:pt-32 pb-20">
         
         {/* =========================================
-            1. HOME / EBOOK BUY SECTION 
+            1. HOME / HERO / SPLIT BUY SECTION 
         ========================================= */}
-        <section id="home" className="min-h-[90vh] flex flex-col items-center justify-center px-6 relative overflow-hidden mt-10 md:mt-0">
-          <div className="text-center max-w-4xl mx-auto">
+        <section id="home" className="min-h-[85vh] flex flex-col items-center justify-center px-6 relative overflow-hidden">
+          <div className="max-w-6xl mx-auto w-full">
             
-            <h1 className="text-5xl md:text-7xl font-black mb-12 tracking-tighter uppercase leading-none">
-              Master the Art of <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37]">Earning with AI</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-16 tracking-tighter uppercase leading-none text-center">
+              Master the Art of <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37]">Earning with AI</span>
             </h1>
             
-            {/* PREMIUM BUY CARD WITH EBOOK COVER */}
-            <div className="max-w-md mx-auto bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            {/* GRID LAYOUT: LEFT SIDE (CARD) & RIGHT SIDE (BENEFITS) */}
+            <div className="grid lg:grid-cols-12 gap-10 items-center">
               
-              {/* BOOK COVER GRAPHIC */}
-              <div className="relative w-40 h-56 mx-auto mb-8 rounded-r-xl rounded-l-md overflow-hidden border border-white/10 shadow-[20px_20px_30px_rgba(0,0,0,0.8)] group hover:-translate-y-2 transition-transform duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-[#111]"></div>
-                <div className="absolute top-0 left-0 w-3 h-full bg-gradient-to-b from-[#D4AF37] via-[#b49020] to-[#8b5cf6] shadow-[inset_-2px_0_5px_rgba(0,0,0,0.5)]"></div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center ml-2">
-                  <i className="fa-solid fa-robot text-4xl text-[#D4AF37] mb-4 group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"></i>
-                  <p className="text-white font-black text-[15px] uppercase tracking-widest leading-tight">AI Earning<br/>Blueprint</p>
-                  <p className="text-gray-500 text-[9px] uppercase tracking-[0.3em] mt-4">By ZX6YN</p>
+              {/* LEFT SIDE: PREMIUM BUY CARD */}
+              <div className="lg:col-span-5 max-w-md mx-auto w-full bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)] z-10">
+                
+                {/* BOOK COVER GRAPHIC */}
+                <div className="relative w-40 h-56 mx-auto mb-8 rounded-r-xl rounded-l-md overflow-hidden border border-white/10 shadow-[20px_20px_30px_rgba(0,0,0,0.8)] group hover:-translate-y-2 transition-transform duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-[#111]"></div>
+                  <div className="absolute top-0 left-0 w-3 h-full bg-gradient-to-b from-[#D4AF37] via-[#b49020] to-[#8b5cf6] shadow-[inset_-2px_0_5px_rgba(0,0,0,0.5)]"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center ml-2">
+                    <i className="fa-solid fa-robot text-4xl text-[#D4AF37] mb-4 group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"></i>
+                    <p className="text-white font-black text-[15px] uppercase tracking-widest leading-tight">AI Earning<br/>Blueprint</p>
+                    <p className="text-gray-500 text-[9px] uppercase tracking-[0.3em] mt-4">By ZX6YN</p>
+                  </div>
+                </div>
+
+                <div className="mb-6 text-center">
+                  <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-3">
+                    Premium Guide
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-1">Instant VIP Access</h3>
+                  <p className="text-gray-400 text-xs">Secure payment via Razorpay. PDF unlocks instantly.</p>
+                </div>
+                
+                {/* ASLI RAZORPAY BUTTON */}
+                <Auth /> 
+
+                {/* DISCLAIMER NOTE */}
+                <p className="text-[11px] text-gray-400 mt-4 italic text-center leading-relaxed">
+                  *Note: Payment successful hote hi VIP Access yahi instantly unlock ho jayega, aur aapko Ebook ka access link aapke email par bhi bhej diya jayega.
+                </p>
+              </div>
+
+              {/* RIGHT SIDE: BENEFITS & DELIVERY (Formerly About Section) */}
+              <div id="about" className="lg:col-span-7 w-full border border-white/10 p-8 md:p-10 rounded-3xl bg-zinc-900/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
+                {/* Upar ka halka sa gold glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50"></div>
+
+                <h2 className="text-2xl md:text-3xl font-black mb-8 uppercase tracking-wider border-b border-white/10 pb-6 text-center md:text-left">
+                  What's Inside & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37]">How It Works</span>
+                </h2>
+
+                <div className="grid sm:grid-cols-2 gap-8">
+                  {/* Ebook ke Fayde */}
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                      <i className="fa-solid fa-bolt text-[#D4AF37] mr-3"></i> Why Read This?
+                    </h3>
+                    <ul className="space-y-4 text-gray-400 text-sm">
+                      <li className="flex items-start">
+                        <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                        <span>Secret AI tools to automate and scale your digital income streams.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                        <span>Step-by-step roadmap designed for absolute beginners.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                        <span>Proven strategies to monetize your skills using AI.</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Delivery Process */}
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                      <i className="fa-solid fa-unlock-keyhole text-[#D4AF37] mr-3"></i> Delivery Process
+                    </h3>
+                    <ul className="space-y-4 text-gray-400 text-sm">
+                      <li className="flex items-start">
+                        <span className="text-[#D4AF37] font-black mt-0.5 mr-3">1.</span>
+                        <span>Make a secure one-time payment of ₹99 via Razorpay.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-[#D4AF37] font-black mt-0.5 mr-3">2.</span>
+                        <span>Get instantly redirected to your VIP Download Dashboard.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-[#D4AF37] font-black mt-0.5 mr-3">3.</span>
+                        <span>Read online or download the high-quality PDF to your device.</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="mb-6 text-center">
-                <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-3">
-                  Premium Guide
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-1">Instant VIP Access</h3>
-                <p className="text-gray-400 text-xs">Secure payment via Razorpay. PDF unlocks instantly.</p>
-              </div>
-              
-              {/* ASLI RAZORPAY BUTTON */}
-              <Auth /> 
-
-              {/* TERA NAYA DISCLAIMER NOTE */}
-              <p className="text-[11px] text-gray-400 mt-4 italic text-center">
-                *Note: Payment successful hote hi VIP Access yahi instantly unlock ho jayega, aur aapko Ebook ka access link aapke email par bhi bhej diya jayega.
-              </p>
-            </div>
-
-          </div>
-        </section>
-
-        {/* =========================================
-            2. BENEFITS & DELIVERY (Replaced About)
-        ========================================= */}
-        <section id="about" className="py-24 px-6 border-t border-white/5 bg-[#0a0a0a]">
-          <div className="max-w-4xl mx-auto text-left border border-white/10 p-8 rounded-2xl bg-zinc-900/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
-            {/* Upar ka halka sa gold glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50"></div>
-
-            <h2 className="text-2xl md:text-3xl font-black mb-10 text-center uppercase tracking-wider">
-              What's Inside & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37]">How It Works</span>
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-10">
-              
-              {/* LEFT SIDE: Ebook ke Fayde */}
-              <div>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center">
-                  <i className="fa-solid fa-bolt text-[#D4AF37] mr-3"></i> Why Read This?
-                </h3>
-                <ul className="space-y-4 text-gray-400 text-sm">
-                  <li className="flex items-start">
-                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                    Secret AI tools to automate and scale your digital income streams.
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                    Step-by-step roadmap designed for absolute beginners (zero experience needed).
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                    Proven strategies to monetize your skills using artificial intelligence.
-                  </li>
-                </ul>
-              </div>
-
-              {/* RIGHT SIDE: Payment ke baad kya hoga */}
-              <div>
-                <h3 className="text-lg font-bold text-white mb-4 flex items-center">
-                  <i className="fa-solid fa-unlock-keyhole text-[#D4AF37] mr-3"></i> Instant Delivery Process
-                </h3>
-                <ul className="space-y-4 text-gray-400 text-sm">
-                  <li className="flex items-start">
-                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">1.</span>
-                    Make a secure one-time payment of ₹99 via Razorpay.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">2.</span>
-                    Get instantly redirected to your private VIP Download Dashboard.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">3.</span>
-                    Read online or download the high-quality PDF to your device forever.
-                  </li>
-                </ul>
-              </div>
-              
             </div>
           </div>
         </section>
 
         {/* =========================================
-            3. CONTACT SECTION
+            2. CONTACT SECTION
         ========================================= */}
-        <section id="contact" className="py-32 px-6 border-t border-white/5 bg-[#0a0a0a]">
+        <section id="contact" className="py-24 px-6 mt-10 border-t border-white/5 bg-[#0a0a0a]">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
               Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4]">legendary.</span>

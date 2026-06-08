@@ -37,7 +37,7 @@ export default function Home() {
         <div className="flex items-center space-x-4 md:space-x-8">
           <div className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Home</a>
-            <a href="#about" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="#about" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Benefits</a>
             <a href="#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Contact</a>
           </div>
           
@@ -98,35 +98,61 @@ export default function Home() {
         </section>
 
         {/* =========================================
-            2. ABOUT SECTION
+            2. BENEFITS & DELIVERY (Replaced About)
         ========================================= */}
-        <section id="about" className="py-32 px-6 border-t border-white/5 bg-[#0a0a0a]">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-12">
-              Who is <span className="text-[#ec4899] underline decoration-2 underline-offset-8">ZX6YN</span>?
-            </h2>
-            
-            <div className="text-gray-300 text-base md:text-lg leading-relaxed mb-12 space-y-6 max-w-3xl mx-auto text-justify sm:text-center font-light">
-              <p className="italic text-gray-400 text-xl font-normal">
-                "I don’t just use technology; I dissect it. In a digital landscape where personal data is treated as a highly profitable commodity, I stand for digital sovereignty, hardcore privacy, and open-source resilience."
-              </p>
-              <p>
-                My journey didn't start with a simple coding tutorial—it started with a stark realization of how invasive modern tech algorithms really are. I moved away from mainstream ecosystems to build my foundation on principles of raw performance and anonymity, which led me straight to a custom-tuned CachyOS setup.
-              </p>
-              <p>
-                From hardening custom Linux kernels to deploying self-hosted zero-knowledge infrastructure, my goal is to help reclaim the web. I build, audit, and advocate for systems that prioritize human freedom over profit-driven surveillance algorithms. I'm not just a developer; I'm an architect of secure digital ecosystems. Welcome to my node.
-              </p>
-            </div>
+        <section id="about" className="py-24 px-6 border-t border-white/5 bg-[#0a0a0a]">
+          <div className="max-w-4xl mx-auto text-left border border-white/10 p-8 rounded-2xl bg-zinc-900/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] relative overflow-hidden">
+            {/* Upar ka halka sa gold glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50"></div>
 
-            <div className="flex flex-wrap justify-center gap-6">
-              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 w-44 hover:border-[#8b5cf6]/40 transition-colors bg-opacity-60">
-                <div className="text-3xl font-bold text-[#8b5cf6]">2+</div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest mt-1">Years Exp.</div>
+            <h2 className="text-2xl md:text-3xl font-black mb-10 text-center uppercase tracking-wider">
+              What's Inside & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37]">How It Works</span>
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-10">
+              
+              {/* LEFT SIDE: Ebook ke Fayde */}
+              <div>
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                  <i className="fa-solid fa-bolt text-[#D4AF37] mr-3"></i> Why Read This?
+                </h3>
+                <ul className="space-y-4 text-gray-400 text-sm">
+                  <li className="flex items-start">
+                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                    Secret AI tools to automate and scale your digital income streams.
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                    Step-by-step roadmap designed for absolute beginners (zero experience needed).
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                    Proven strategies to monetize your skills using artificial intelligence.
+                  </li>
+                </ul>
               </div>
-              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 w-44 hover:border-[#06b6d4]/40 transition-colors bg-opacity-60">
-                <div className="text-3xl font-bold text-[#06b6d4]">100%</div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest mt-1">Privacy Focused</div>
+
+              {/* RIGHT SIDE: Payment ke baad kya hoga */}
+              <div>
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+                  <i className="fa-solid fa-unlock-keyhole text-[#D4AF37] mr-3"></i> Instant Delivery Process
+                </h3>
+                <ul className="space-y-4 text-gray-400 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">1.</span>
+                    Make a secure one-time payment of ₹99 via Razorpay.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">2.</span>
+                    Get instantly redirected to your private VIP Download Dashboard.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[#D4AF37] font-black mt-0.5 mr-3">3.</span>
+                    Read online or download the high-quality PDF to your device forever.
+                  </li>
+                </ul>
               </div>
+              
             </div>
           </div>
         </section>

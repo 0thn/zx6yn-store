@@ -88,9 +88,9 @@ export default function Home() {
               {/* ASLI RAZORPAY BUTTON */}
               <Auth /> 
 
-              {/* TERA DESCRIPTIVE DISCLAIMER NOTE NOTE */}
-              <p className="text-[11px] text-gray-500 mt-4 italic">
-                *Note: VIP Access button successfully purchase karne ke baad hi activate hoga aur permanent ebook access unlock karega.
+              {/* TERA NAYA DISCLAIMER NOTE */}
+              <p className="text-[11px] text-gray-400 mt-4 italic text-center">
+                *Note: Payment successful hote hi VIP Access yahi instantly unlock ho jayega, aur aapko Ebook ka access link aapke email par bhi bhej diya jayega.
               </p>
             </div>
 

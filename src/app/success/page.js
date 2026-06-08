@@ -8,13 +8,15 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const [authorized, setAuthorized] = useState(false);
 
-  useEffect(() => {
-    // Razorpay jo URL mein ID bhejta hai, use pakdo
+useEffect(() => {
+    // Redirection se ID mil rahi hai toh theek, 
+    // nahi toh manually check kar lo ki kya humne pehle verify kiya tha
     const paymentId = searchParams.get('razorpay_payment_id');
-    const isAlreadyVIP = localStorage.getItem('zx6yn_vip') === 'true';
-
-    if (paymentId || isAlreadyVIP) {
+    
+    if (paymentId) {
       localStorage.setItem('zx6yn_vip', 'true');
+      setAuthorized(true);
+    } else if (localStorage.getItem('zx6yn_vip') === 'true') {
       setAuthorized(true);
     } else {
       router.push('/');

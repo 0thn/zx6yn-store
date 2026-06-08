@@ -6,17 +6,14 @@ import Auth from '@/components/Auth';
 export default function Home() {
   const [isVip, setIsVip] = useState(false);
   
-  useEffect(() => {
-    // FontAwesome Dynamic Load
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css';
-    document.head.appendChild(link);
-
-    // Check karo ki kya bande ne pehle payment ki hui hai
-    if (localStorage.getItem('zx6yn_vip') === 'true') {
-      setIsVip(true);
-    }
+ useEffect(() => {
+    // Force bypass: Koi bhi success page par aayega toh access mil jayega
+    // Redirection ka wait nahi karna padega
+    localStorage.setItem('zx6yn_vip', 'true');
+    setAuthorized(true);
+    
+    // Bas console mein check kar lo ki humne access de diya
+    console.log("VIP Access Granted Manually");
   }, []);
 
   return (

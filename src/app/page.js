@@ -7,14 +7,51 @@ export default function Home() {
   const [isAiVip, setIsAiVip] = useState(false);
   const [isHackVip, setIsHackVip] = useState(false);
   
+  // Timer State
+  const [timeLeft, setTimeLeft] = useState({ hours: '00', minutes: '00', seconds: '00' });
+
   useEffect(() => {
+    // FontAwesome
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css';
     document.head.appendChild(link);
 
+    // VIP Checks
     if (localStorage.getItem('zx6yn_vip') === 'true') setIsAiVip(true);
     if (localStorage.getItem('zx6yn_hack_vip') === 'true') setIsHackVip(true);
+
+    // Evergreen Timer Logic (Always counts down to the next 12:00 PM)
+    const getTargetTime = () => {
+      const now = new Date();
+      const target = new Date();
+      if (now.getHours() >= 12) {
+        target.setDate(target.getDate() + 1); // Move to tomorrow if it's already past 12 PM today
+      }
+      target.setHours(12, 0, 0, 0);
+      return target;
+    };
+
+    const targetTime = getTargetTime();
+
+    const timerInterval = setInterval(() => {
+      const now = new Date();
+      const difference = targetTime - now;
+
+      if (difference > 0) {
+        const h = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((difference / 1000 / 60) % 60);
+        const s = Math.floor((difference / 1000) % 60);
+
+        setTimeLeft({
+          hours: h.toString().padStart(2, '0'),
+          minutes: m.toString().padStart(2, '0'),
+          seconds: s.toString().padStart(2, '0')
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timerInterval);
   }, []);
 
   return (
@@ -82,9 +119,38 @@ export default function Home() {
                   </div>
 
                   <div className="mb-6 text-center">
-                    <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-3">Premium Guide</div>
+                    <div className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-4">Premium Guide</div>
                     <h3 className="text-2xl font-bold text-white mb-1">Instant VIP Access</h3>
-                    <p className="text-gray-400 text-xs">Secure payment via Razorpay. PDF unlocks instantly.</p>
+                    <p className="text-gray-400 text-xs mb-4">Secure payment via Razorpay. PDF unlocks instantly.</p>
+                    
+                    {/* FOMO PRICING BLOCK FOR AI WITH TIMER */}
+                    <div className="bg-black/40 border border-red-500/20 rounded-xl py-3 px-4 mb-2 shadow-[inset_0_0_15px_rgba(239,68,68,0.1)]">
+                      <div className="flex items-center justify-center gap-3 mb-2">
+                        <span className="text-3xl font-black text-white">₹99</span>
+                        <span className="text-base text-gray-500 line-through">₹499</span>
+                        <span className="text-[10px] font-bold bg-red-500/20 text-red-400 px-2 py-1 rounded uppercase tracking-wider animate-pulse">80% OFF ends soon</span>
+                      </div>
+                      
+                      {/* DIGITAL TIMER */}
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-[#D4AF37]">{timeLeft.hours}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Hrs</p>
+                        </div>
+                        <span className="text-gray-600 font-bold">:</span>
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-[#D4AF37]">{timeLeft.minutes}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Min</p>
+                        </div>
+                        <span className="text-gray-600 font-bold">:</span>
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-red-400">{timeLeft.seconds}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Sec</p>
+                        </div>
+                      </div>
+
+                      <p className="text-gray-400 text-[10px] font-medium tracking-wide">Price shifts to <span className="text-white font-bold">₹249</span> at 12:00 PM!</p>
+                    </div>
                   </div>
                 </div>
                 
@@ -107,9 +173,38 @@ export default function Home() {
                   </div>
 
                   <div className="mb-6 text-center">
-                    <div className="inline-block px-3 py-1 bg-[#00ff41]/10 border border-[#00ff41]/20 rounded-full text-[#00ff41] text-xs font-bold uppercase tracking-widest mb-3">Cyber Security</div>
+                    <div className="inline-block px-3 py-1 bg-[#00ff41]/10 border border-[#00ff41]/20 rounded-full text-[#00ff41] text-xs font-bold uppercase tracking-widest mb-4">Cyber Security</div>
                     <h3 className="text-2xl font-bold text-white mb-1">Elite Hacker Access</h3>
-                    <p className="text-gray-400 text-xs">Secure payment via Razorpay. PDF unlocks instantly.</p>
+                    <p className="text-gray-400 text-xs mb-4">Secure payment via Razorpay. PDF unlocks instantly.</p>
+                    
+                    {/* FOMO PRICING BLOCK FOR HACKING WITH TIMER */}
+                    <div className="bg-black/40 border border-red-500/20 rounded-xl py-3 px-4 mb-2 shadow-[inset_0_0_15px_rgba(239,68,68,0.1)]">
+                      <div className="flex items-center justify-center gap-3 mb-2">
+                        <span className="text-3xl font-black text-white">₹199</span>
+                        <span className="text-base text-gray-500 line-through">₹999</span>
+                        <span className="text-[10px] font-bold bg-red-500/20 text-red-400 px-2 py-1 rounded uppercase tracking-wider animate-pulse">80% OFF ends soon</span>
+                      </div>
+
+                      {/* DIGITAL TIMER */}
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-[#00ff41]">{timeLeft.hours}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Hrs</p>
+                        </div>
+                        <span className="text-gray-600 font-bold">:</span>
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-[#00ff41]">{timeLeft.minutes}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Min</p>
+                        </div>
+                        <span className="text-gray-600 font-bold">:</span>
+                        <div className="bg-zinc-900 border border-white/10 rounded px-2 py-1 text-center min-w-[40px]">
+                          <span className="text-lg font-mono font-bold text-red-400">{timeLeft.seconds}</span>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">Sec</p>
+                        </div>
+                      </div>
+
+                      <p className="text-gray-400 text-[10px] font-medium tracking-wide">Price shifts to <span className="text-white font-bold">₹499</span> at 12:00 PM!</p>
+                    </div>
                   </div>
                 </div>
                 
@@ -159,7 +254,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT SECTION (COMPLETELY RESTORED) */}
+        {/* CONTACT SECTION */}
         <section id="contact" className="py-24 px-6 mt-10 border-t border-white/5 bg-[#0a0a0a]">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
@@ -170,7 +265,6 @@ export default function Home() {
               Interested in collaborating, have a question, or just want to say hi? My inbox is always open.
             </p>
             
-            {/* EMAIL BUTTON RESTORED */}
             <div className="flex justify-center mb-12">
               <a href="mailto:website@zx6yn.xyz" className="flex items-center space-x-3 px-8 py-4 bg-white text-black rounded-full font-black text-base hover:scale-105 transition-transform active:scale-95 shadow-xl">
                 <i className="fa-solid fa-envelope"></i>
@@ -178,7 +272,6 @@ export default function Home() {
               </a>
             </div>
             
-            {/* ALL SOCIAL LINKS RESTORED */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a href="https://wa.me/919348682084" target="_blank" rel="noopener noreferrer" title="WhatsApp" className="p-5 bg-zinc-900/60 rounded-full border border-white/10 text-white hover:text-green-500 hover:border-green-500/50 transition-all text-2xl flex items-center justify-center w-[70px] h-[70px]">
                 <i className="fab fa-whatsapp"></i>

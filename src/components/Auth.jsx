@@ -30,7 +30,7 @@ export default function Auth() {
           disabled={loading}
           className="w-full relative group bg-gradient-to-r from-[#FFF5C3] to-[#D4AF37] text-black font-bold py-3.5 px-6 rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Redirecting to Secure Payment...' : 'Continue to Payment (₹99)'}
+          {loading ? 'Redirecting to Secure Payment...' : 'Continue to Payment (₹249)'}
         </button>
       </form>
     </div>
